@@ -1,0 +1,13 @@
+{
+    "app.title": "My Address Book",
+
+    "header.search": "Search",
+    "header.search.placeholder": "Search Name",
+
+    "people.loading": "Loading people",
+    "people.loading.error": "An error occurred when loading people. Please try again.",
+
+    "no.person.selected": "To view information, select a person from the address list on the left.",
+
+    "no.people.found": "No people found. Try changing the search field."
+}
