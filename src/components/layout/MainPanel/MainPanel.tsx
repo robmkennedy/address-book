@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGetPeopleQuery } from 'state/slices/personApiSlice';
 import ErrorBox from 'components/common/ErrorBox/ErrorBox';
@@ -28,10 +27,16 @@ const MainPanel = () => {
     else if (data) {
         const { people } = data;
         content = (
-            <Fragment>
-                <ListPanel people={people} />
-                <PersonPanel />
-            </Fragment>
+            <div className='container d-flex'>
+                <div className='row flex-grow-1'>
+                    <div className='col col-md-4 col-xl-3 d-flex'>
+                        <ListPanel people={people} />
+                    </div>
+                    <div className='col'>
+                        <PersonPanel />
+                    </div>
+                </div>
+            </div>
         );
     }
 

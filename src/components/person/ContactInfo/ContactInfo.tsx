@@ -17,10 +17,10 @@ const ContactInfo = ({ person }: ContactInfoProps) => {
                 <ProfileImage image={person.image} />
             </div>
             <div>
-                <div className='rk-contact-name'>{person.firstName}</div>
+                <h3 className='rk-contact-name'>{person.name}</h3>
                 <div className='rk-contact-company'>{person.company}</div>
                 <div className='rk-contact-phone'>{person.phone}</div>
-                <div className='rk-contact-email'>{person.email}</div>
+                <div className='rk-contact-email'><a href={`mailto:${person.email}`}>{person.email}</a></div>
             </div>
         </section>
     );

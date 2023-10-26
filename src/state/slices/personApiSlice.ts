@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 /**
- * A redux toolkit API slice that is used to fetch the Movie. The getMovieByName endpoint
- * is used by the Search Page. The getMovieById endpoint is used by the Movie Details component
- * and fetches the movie based on it's unique imdb ID.
+ * A redux toolkit API slice that is used to fetch the Person data. The getPeople endpoint
+ * is used by the ListPanel.
  */
 export const personApiSlice = createApi({
     reducerPath: 'personApi',

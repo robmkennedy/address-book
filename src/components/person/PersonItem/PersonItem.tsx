@@ -11,7 +11,7 @@ type PersonItemProps = {
 const PersonItem = ({ person }: PersonItemProps) => {
     
     return (
-        <div className='rk-person-item'>{person.lastName}</div>
+        <div className='rk-person-item'>{person.name}</div>
     );
 }
 

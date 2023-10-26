@@ -1,12 +1,4 @@
-@use 'src/styles/variables';
-
 .rk-person-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    h5 {
-        font-weight: variables.$rk-font-light;
-    }
+    padding: 5px;
+    cursor: pointer;
 }

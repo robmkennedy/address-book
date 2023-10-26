@@ -1,12 +1,22 @@
-@use 'src/styles/variables';
+@use 'src/styles/colors';
 
-.rk-message-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
+.rk-nav-list {
 
-    h5 {
-        font-weight: variables.$rk-font-light;
+    .rk-nav-list-empty {
+        margin-top: 20px;
+        padding-right: 20px;
+    }
+
+    .rk-nav-category {
+        font-weight: bold;
+        color: colors.$rk-item-category;
+    }
+
+    .rk-nav-list-item:hover {
+        background-color: colors.$rk-item-hover;
+    }
+
+    .rk-nav-list-item.active {
+        background-color: colors.$rk-item-active;
     }
 }

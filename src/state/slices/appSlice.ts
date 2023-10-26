@@ -8,9 +8,9 @@ const initialAppState: AppState = {
 
 /**
  * This portion of the state is used to control the layout of the app. For a simple
- * app such as this, the only requirement is to keep track of whether the side panel
- * (only in mobile view) is open or closed.
- */
+ * app such as this, the only requirement is to keep track of what person is selected
+ * and the search string
+ * */
 const appSlice = createSlice({
     name: 'app',
     initialState: initialAppState,

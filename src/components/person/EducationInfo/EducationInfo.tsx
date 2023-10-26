@@ -1,6 +1,4 @@
 import { useTranslation } from 'react-i18next';
-
-
 import { Education } from 'utils/types';
 import HistoryRecord from 'components/person/HistoryRecord/HistoryRecord';
 import './EducationInfo.scss';
@@ -22,6 +20,7 @@ const EducationInfo = ({ educations }: EducationInfoProps) => {
 
     return (
         <section className='rk-education-info'>
+            <h5>{t('person.education')}</h5>
             {content}
         </section>
     );

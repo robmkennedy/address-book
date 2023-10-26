@@ -4,10 +4,18 @@
     "header.search": "Search",
     "header.search.placeholder": "Search Name",
 
+    "person.education": "Education",
+    "person.experience": "Experience",
+
     "people.loading": "Loading people",
     "people.loading.error": "An error occurred when loading people. Please try again.",
 
     "no.person.selected": "To view information, select a person from the address list on the left.",
 
-    "no.people.found": "No people found. Try changing the search field."
+    "no.people.found": "No people found. Try changing the search field.",
+    "sort.ascending": "Sort Ascending",
+    "sort.descending": "Sort Descending",
+
+    "common.loading": "Loading...",
+    "common.error": "An error has occurred. Please try again."
 }

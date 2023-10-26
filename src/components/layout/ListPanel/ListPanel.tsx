@@ -1,10 +1,13 @@
-import { useSearchStringSelector } from 'hooks/selectorHooks';
+import { ChangeEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import NavList from 'components/common/NavList/NavList';
-import { Person } from 'utils/types';
+import PersonItem from 'components/person/PersonItem/PersonItem';
 import { personSelected } from 'state/slices/appSlice';
 import { useAppDispatch } from 'hooks/stateHooks';
+import { useSearchStringSelector, useSelectedPersonSelector } from 'hooks/selectorHooks';
+import NavControl from 'components/common/NavControl/NavControl';
+import { Person } from 'utils/types';
 import './ListPanel.scss';
-import PersonItem from 'components/person/PersonItem/PersonItem';
 
 type ListPanelProps = {
     people: Person[]
@@ -16,15 +19,34 @@ type ListPanelProps = {
  * for the search string and filter the people accordingly.
  */
 const ListPanel = ({ people }: ListPanelProps) => {
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const searchString = useSearchStringSelector();
+    const selectedPerson = useSelectedPersonSelector();
+    const [sortString, setSortString] = useState('asc');
 
-    const sortCallback = (person: Person) => {
-        return (person.lastName.includes(searchString) || person.firstName.includes(searchString));
+    const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setSortString(event.target.value);
+    };
+
+    const sortCallback = (personA: Person, personB: Person) => {
+        const nameA = personA.name.toUpperCase();
+        const nameB = personB.name.toUpperCase();
+        if (nameA < nameB) {
+            return (sortString === 'asc' ? -1 : 1);
+        }
+        if (nameA > nameB) {
+            return (sortString === 'asc' ? 1 : -1);
+        }
+        return 0;
     }
 
     const filterCallback = (person: Person) => {
-        return (person.lastName.includes(searchString) || person.firstName.includes(searchString));
+        return person.name.toUpperCase().includes(searchString.toUpperCase());
+    }
+
+    const categoryCallback = (person: Person) => {
+        return person.name.slice(0, 1).toUpperCase();
     }
 
     const renderItem = (person: Person) => {
@@ -37,8 +59,15 @@ const ListPanel = ({ people }: ListPanelProps) => {
 
     return (
         <section className='rk-list-panel'>
-            {/* <NavList items={people} filter={filterCallback} sort={sortCallback} /> */}
-            <NavList items={people} render={renderItem} onSelect={handleSelect}/>
+            <NavControl sortString={sortString} onSortChange={handleSortChange} />
+            <NavList items={people}
+                selectedItem={selectedPerson}
+                category={categoryCallback}
+                filter={filterCallback}
+                sort={sortCallback}
+                render={renderItem}
+                onSelect={handleSelect}
+                emptyText={t('no.people.found')} />
         </section>
     );
 }

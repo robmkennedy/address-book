@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import './HistoryRecord.scss';
 
 type HistoryRecordProps = {
@@ -13,11 +12,16 @@ type HistoryRecordProps = {
  * certain date range.
  */
 const HistoryRecord = ({ title, description, startYear, endYear }: HistoryRecordProps) => {
-    const { t } = useTranslation();
-    
+
     return (
         <div className='rk-history-record'>
-            <h5>{title}</h5>
+            <div className='rk-history-years'>
+                <h6>{startYear} - {endYear}</h6>
+            </div>
+            <div className='rk-history-info'>
+                <h6>{title}</h6>
+                <div>{description}</div>
+            </div>
         </div>
     );
 }

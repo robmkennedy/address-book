@@ -1,12 +1,4 @@
-@use 'src/styles/variables';
-
-.rk-error-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    h5 {
-        font-weight: variables.$rk-font-light;
-    }
+.rk-list-panel {
+    flex-grow: 1;
+    border-right: 1px solid lightblue;
 }

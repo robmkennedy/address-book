@@ -3,10 +3,12 @@ import './NavList.scss';
 
 type NavListProps<T> = {
     items: T[],
+    selectedItem: T | undefined,
     render: (item: T) => ReactNode,
     onSelect: (item: T) => void,
     filter?: (item: T) => boolean,
-    sort?: (items: T[]) => boolean,
+    category?: (item: T) => string,
+    sort?: (itemA: T, itemB: T) => number,
     emptyText?: string
 };
 
@@ -19,23 +21,61 @@ type NavListProps<T> = {
  * We also allow optional filtering and sorting functions.
  * After filtering, if no items remain, a default message is displayed to the user.
  */
-export default function NavList<T>({ items, render, onSelect, filter, sort, emptyText }: NavListProps<T>) {
+export default function NavList<T>(props: NavListProps<T>) {
+    const { items, selectedItem, render, onSelect, filter, category, sort, emptyText } = props;
 
+    let newItems = [...items];
+    if (filter) {
+        newItems = newItems.filter(filter);
+    }
+    if (sort) {
+        newItems.sort(sort);
+    }
     let content = null;
-    if (items.length === 0) {
+    if (newItems.length === 0) {
         content = (
-            <div>{emptyText || ''}</div>
+            <div className='rk-nav-list-empty'>{emptyText || ''}</div>
         );
     }
+    else if (category) {
+        content = [];
+        const letterMap: Map<string, T[]> = new Map();
+        newItems.forEach((newItem) => {
+            const firstLetter = category(newItem);
+            const existingArray = letterMap.get(firstLetter);
+            if (existingArray) {
+                existingArray.push(newItem);
+            }
+            else {
+                letterMap.set(firstLetter, [newItem]);
+            }
+        });
+
+        let index = 0;
+        for (let [key, array] of letterMap) {
+            content.push(
+                <div className='rk-nav-category' key={index}>{key}</div>
+            );
+            index += 1;
+            for (let item of array) {
+                const activeString = item === selectedItem ? 'active' : ''
+                content.push(<div className={`rk-nav-list-item ${activeString}`} key={index} onClick={() => onSelect(item)}>{render(item)}</div>);
+                index += 1;
+            }
+        };
+    }
     else {
-        content = items.map((item, index) => {
-            return <div className='rk-nav-list-item' key={index} onClick={() => onSelect(item)}>{render(item)}</div>
+        content = newItems.map((item, index) => {
+            const activeString = item === selectedItem ? 'active' : ''
+            return <div className={`rk-nav-list-item ${activeString}`} key={index} onClick={() => onSelect(item)}>{render(item)}</div>
         });
     }
 
     return (
         <div className='rk-nav-list'>
-            {content}
+            <div className='rk-nav-list-content'>
+                {content}
+            </div>
         </div>
     );
 }

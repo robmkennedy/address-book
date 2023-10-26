@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import appSlice from './slices/appSlice';
 import { personApiSlice } from './slices/personApiSlice';
 
-
 // The root reducer for the store.
 const rootReducer = {
     app: appSlice.reducer,
@@ -11,11 +10,10 @@ const rootReducer = {
 
 /**
  * Setup the redux store. This automatically sets up the redux thunk middleware. We also add
- * the middleware for querying the movie API and querying the about markdown file.
+ * the middleware for querying the Person API.
  */
 const store = configureStore({
     reducer: rootReducer,
-    // preloadedState: {  },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat([personApiSlice.middleware])
 });
 

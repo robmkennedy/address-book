@@ -1,12 +1,8 @@
-@use 'src/styles/variables';
-
-.rk-hist {
+.rk-history-record {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    margin-bottom: 40px;
 
-    h5 {
-        font-weight: variables.$rk-font-light;
+    .rk-history-years {
+        margin-right: 30px;
     }
 }

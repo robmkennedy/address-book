@@ -9,20 +9,4 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-
-    li::marker {
-        color: colors.$rk-secondary;
-    }
-
-    .offcanvas {
-
-        .navbar-nav {
-
-            .nav-link.active,
-            .nav-link:hover {
-                color: colors.$rk-secondary;
-            }
-        }
-    }
 }

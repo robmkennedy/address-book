@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import './ExperienceInfo.scss';
+import HistoryRecord from 'components/person/HistoryRecord/HistoryRecord';
 import { Experience } from 'utils/types';
-import HistoryRecord from '../HistoryRecord/HistoryRecord';
+import './ExperienceInfo.scss';
 
 type ExperienceInfoProps = {
     experiences: Experience[]
@@ -20,6 +20,7 @@ const ExperienceInfo = ({ experiences }: ExperienceInfoProps) => {
 
     return (
         <section className='rk-experience-info'>
+            <h5>{t('person.experience')}</h5>
             {content}
         </section>
     );
