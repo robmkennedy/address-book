@@ -11,7 +11,7 @@ const ProfileImage = ({image}: ProfileImageProps) => {
 
     return (
         <div className='rk-profile-image'>
-            <img alt='Profile Image' src={image}/>
+            <img alt='Profile' src={image}/>
         </div>
     );
 }
